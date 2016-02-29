@@ -1,5 +1,6 @@
 package servlet;
 
+import database.DatabaseHandler;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,16 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "MyServlet",
-        urlPatterns = {"/hello"}
+        name = "GetIPServlet",
+        urlPatterns = {"/getip"}
     )
-public class HelloServlet extends HttpServlet {
+public class getIP extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        out.write("hello heroku".getBytes());
+        DatabaseHandler dbh = new DatabaseHandler();
+        String id = req.getParameter("id");
+        String token = req.getParameter("token");
+        String ip = dbh.getFromDatabase(id,token);
+        if(ip!=null) out.write(ip.getBytes());
+        else out.write("Error".getBytes());
         out.flush();
         out.close();
     }

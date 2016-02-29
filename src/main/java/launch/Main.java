@@ -1,5 +1,6 @@
 package launch;
 
+import database.DatabaseHandler;
 import java.io.File;
 
 import org.apache.catalina.WebResourceRoot;
@@ -35,6 +36,8 @@ public class Main {
                 additionWebInfClasses.getAbsolutePath(), "/"));
         ctx.setResources(resources);
 
+        new DatabaseHandler().prepareDatabase();
+        
         tomcat.start();
         tomcat.getServer().await();
     }
