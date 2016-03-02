@@ -8,6 +8,7 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
+import sockets.MultiEchoService;
 
 public class Main {
 
@@ -38,7 +39,8 @@ public class Main {
 
         new DatabaseHandler().prepareDatabase();
         
-        tomcat.start();
-        tomcat.getServer().await();
+        MultiEchoService.launch();
+        //tomcat.start();
+        //tomcat.getServer().await();
     }
 }
