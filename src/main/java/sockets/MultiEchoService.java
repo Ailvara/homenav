@@ -62,7 +62,7 @@ public class MultiEchoService {
     
     public static void launch() { 
         MultiEchoService mes=new MultiEchoService();
-        mes.startService(80);
+        mes.startService(2007);
     }//main() 
 }//koniec public class SerwerEchoT 
 
