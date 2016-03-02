@@ -62,9 +62,11 @@ public class MultiEchoService {
     
     public static void launch() { 
         MultiEchoService mes=new MultiEchoService();
-        int port = Integer.valueOf(System.getenv("PORT"));
-        if(port==0) port=80;
-        mes.startService(80);
+        String port = System.getenv("PORT");
+        int p;
+        if(port!=null) p=Integer.valueOf(System.getenv("PORT"));
+        else p=80;
+        mes.startService(p);
     }//main() 
 }//koniec public class SerwerEchoT 
 
